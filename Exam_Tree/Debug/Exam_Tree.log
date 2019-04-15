@@ -1,0 +1,7 @@
+﻿  Exam_Tree.cpp
+c:\users\demo8\onedrive\документы\visual studio 2015\projects\exam_tree\exam_tree\exam_tree.cpp(75): warning C4018: >=: несоответствие типов со знаком и без знака
+c:\users\demo8\onedrive\документы\visual studio 2015\projects\exam_tree\exam_tree\exam_tree.cpp(127): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\demo8\onedrive\документы\visual studio 2015\projects\exam_tree\exam_tree\exam_tree.cpp(140): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\demo8\onedrive\документы\visual studio 2015\projects\exam_tree\exam_tree\exam_tree.cpp(209): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Exam_Tree.vcxproj -> C:\Users\demo8\OneDrive\Документы\Visual Studio 2015\Projects\Exam_Tree\Debug\Exam_Tree.exe
+  Exam_Tree.vcxproj -> C:\Users\demo8\OneDrive\Документы\Visual Studio 2015\Projects\Exam_Tree\Debug\Exam_Tree.pdb (Full PDB)

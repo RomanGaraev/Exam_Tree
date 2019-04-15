@@ -1,0 +1,13 @@
+<tree>
+<description> Let's describe properties </description>
+<property>
+<name> depth </name>
+<description> The longest path from root to leaf </description>
+<value> 6 </value>
+</property>
+<property>
+<name> probability </name>
+<description> Probability of node birth </description>
+<value> 0,5 </value>
+</property>
+</tree>
