@@ -70,10 +70,10 @@ public:
 void Tree::Add(Node *pParent){
 	// Если достигнута максимальная глубина, останавливаемся
 	if (pParent->sName.length() >= iDepth) {
-		cout << "Level " << pParent->sName.length() << ",node (terminal) № " << pParent->sName << "\n";
+		cout << "Level " << pParent->sName.length() << ",node (terminal)  " << pParent->sName << "\n";
 		return;
 	}
-	cout << "Level " << pParent->sName.length() << ",node № " << pParent->sName << "\n";
+	cout << "Level " << pParent->sName.length() << ",node  " << pParent->sName << "\n";
 	// Распределение Бернулли с вероятностью Prob 
 	bernoulli_distribution distribution(dblProb);
 	default_random_engine generator;
@@ -94,7 +94,7 @@ void Tree::Add(Node *pParent){
 		}
 		// Если случайная величина == 0, это конечный узел
 		else {
-			cout << "Level " << pParent->lpChildren[i]->sName.length() << ",node (terminal) № " <<pParent->lpChildren[i]->sName << "\n";
+			cout << "Level " << pParent->lpChildren[i]->sName.length() << ",node (terminal)  " <<pParent->lpChildren[i]->sName << "\n";
 		}
 	}
 }
@@ -110,8 +110,8 @@ void Tree::ReBuild() {
 			node->lpChildren[1] = new Node;
 			node->lpChildren[0]->sName = node->sName + "0";
 			node->lpChildren[1]->sName = node->sName + "1";
-			cout << "Level " << node->sName.length() + 1 << ",node (complete) № " << node->lpChildren[0]->sName << "\n";
-			cout << "Level " << node->sName.length() + 1 << ",node (complete) № " << node->lpChildren[1]->sName << "\n";
+			cout << "Level " << node->sName.length() + 1 << ",node (complete)  " << node->lpChildren[0]->sName << "\n";
+			cout << "Level " << node->sName.length() + 1 << ",node (complete)  " << node->lpChildren[1]->sName << "\n";
 		}
 		int nchild = rand() % node->n;
 		node = node->lpChildren[nchild];
