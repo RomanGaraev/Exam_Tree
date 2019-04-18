@@ -47,7 +47,7 @@ public:
 		iMaxDepth = 0;
 	}
 	~Tree() {
-		cout << "Удаляем дерево\n";
+		cout << "Delete the tree...\n";
 		Delete(pRoot);
 	}
 	// Начинаем построение дерева
@@ -67,14 +67,13 @@ public:
 };
 
 // Добавляет потомков к Parent и останавливается, если глубина > depth
-void Tree::Add(Node *pParent)
-{
+void Tree::Add(Node *pParent){
 	// Если достигнута максимальная глубина, останавливаемся
 	if (pParent->sName.length() >= iDepth) {
-		cout << "Уровень " << pParent->sName.length() << ",узел (терминальный) № " << pParent->sName << "\n";
+		cout << "Level " << pParent->sName.length() << ",node (terminal) № " << pParent->sName << "\n";
 		return;
 	}
-	cout << "Уровень " << pParent->sName.length() << ",узел № " << pParent->sName << "\n";
+	cout << "Level " << pParent->sName.length() << ",node № " << pParent->sName << "\n";
 	// Распределение Бернулли с вероятностью Prob 
 	bernoulli_distribution distribution(dblProb);
 	default_random_engine generator;
@@ -95,7 +94,7 @@ void Tree::Add(Node *pParent)
 		}
 		// Если случайная величина == 0, это конечный узел
 		else {
-			cout << "Уровень " << pParent->lpChildren[i]->sName.length() << ",узел (терминальный) № " <<pParent->lpChildren[i]->sName << "\n";
+			cout << "Level " << pParent->lpChildren[i]->sName.length() << ",node (terminal) № " <<pParent->lpChildren[i]->sName << "\n";
 		}
 	}
 }
@@ -111,8 +110,8 @@ void Tree::ReBuild() {
 			node->lpChildren[1] = new Node;
 			node->lpChildren[0]->sName = node->sName + "0";
 			node->lpChildren[1]->sName = node->sName + "1";
-			cout << "Уровень " << node->sName.length() + 1 << ",узел (достроенный) № " << node->lpChildren[0]->sName << "\n";
-			cout << "Уровень " << node->sName.length() + 1 << ",узел (достроенный) № " << node->lpChildren[1]->sName << "\n";
+			cout << "Level " << node->sName.length() + 1 << ",node (complete) № " << node->lpChildren[0]->sName << "\n";
+			cout << "Level " << node->sName.length() + 1 << ",node (complete) № " << node->lpChildren[1]->sName << "\n";
 		}
 		int nchild = rand() % node->n;
 		node = node->lpChildren[nchild];
@@ -185,22 +184,21 @@ string GetNumber(string sname, TiXmlDocument reader) {
 	return "0";
 }
 
-int main()
-{
-	setlocale(LC_ALL, "Rus");
+int main(){
+	setlocale(LC_ALL, "");
 	srand(time(0));
 	// Глубина дерева
 	int idepth;
 	// Вероятность появления нового узла
 	double dblprob;
-	cout << "Укажите путь до файла: ";
+	cout << "Enter path: ";
 	string spath;
 	cin >> spath;
 	cout << "\n";
 	// Парсим данные из .xml файла
 	TiXmlDocument reader(spath.c_str());
 	if (!reader.LoadFile()) {
-		cout << "Файл не удалось загрузить!";
+		cout << "File loading failed!";
 		return 0;
 	}
 	string sDepth = GetNumber("depth", reader);
@@ -208,21 +206,21 @@ int main()
 	// Перевод строчек в цифры
 	idepth = atoi(sDepth.c_str());
 	dblprob = atof(sProb.c_str());
-	cout << "Глубина дерева: " << idepth << ", вероятность: " << dblprob << "\n";
+	cout << "Tree's depth: " << idepth << ",probability : " << dblprob << "\n";
 	// Иницилизируем дерево
 	Tree t(idepth, dblprob);
 	// Создаем узлы дерева
 	t.Start();
 	// Ввод имен
 	string sName1, sName2;
-	cout << "Введите имена узлов: ";
+	cout << "Enter node names: ";
 	cin >> sName1 >> sName2;
 	// Поиск родителя 
 	string sAnswer = t.FindParent(sName1, sName2);
 	if (sAnswer == "Error") {
-		cout << "Вы ввели имя несуществующего узла\n";
+		cout << "This node doesn't exist\n";
 		return 0;
 	}
-	cout << "Общий предок имеет имя: " << sAnswer << "\n";
+	cout << "Ancient name: " << sAnswer << "\n";
 	return 0;
 }
