@@ -185,6 +185,7 @@ string GetNumber(string sname, TiXmlDocument reader) {
 }
 
 int main(){
+	setlocale(LC_ALL,"");
 	srand(time(0));
 	// Глубина дерева
 	int idepth;
