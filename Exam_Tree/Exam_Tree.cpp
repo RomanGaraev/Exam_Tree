@@ -46,10 +46,6 @@ public:
 		pRoot->sName = "";
 		iMaxDepth = 0;
 	}
-	~Tree() {
-		cout << "Delete the tree...\n";
-		Delete(pRoot);
-	}
 	// Начинаем построение дерева
 	void Start() {
 		Add(pRoot);
