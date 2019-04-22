@@ -58,12 +58,10 @@ public:
 	string FindParent(string &sNode1, string &sNode2);
 	// Возвращает указатель на узел с указанным именем name
 	Node* FindNode(string &Name);
-	// Удаляет узел и всех его потомков
-	void Delete(Node *);
 };
 
 // Добавляет потомков к Parent и останавливается, если глубина > depth
-void Tree::Add(Node *pParent){
+void Tree::Add(Node *pParent) {
 	// Если достигнута максимальная глубина, останавливаемся
 	if (pParent->sName.length() >= iDepth) {
 		cout << "Level " << pParent->sName.length() << ",node (terminal)  " << pParent->sName << "\n";
@@ -90,7 +88,7 @@ void Tree::Add(Node *pParent){
 		}
 		// Если случайная величина == 0, это конечный узел
 		else {
-			cout << "Level " << pParent->lpChildren[i]->sName.length() << ",node (terminal)  " <<pParent->lpChildren[i]->sName << "\n";
+			cout << "Level " << pParent->lpChildren[i]->sName.length() << ",node (terminal)  " << pParent->lpChildren[i]->sName << "\n";
 		}
 	}
 }
@@ -115,6 +113,10 @@ void Tree::ReBuild() {
 }
 // Проверяет существование узла (на случай, если пользователь ввел неправильное имя)
 bool Tree::Exist(string &sName) {
+	// Если строку нельзя представить в виде числа, возвращаем ошибку
+	if (!atoi(sName.c_str())) {
+		return false;
+	}
 	Node *pnode = pRoot;
 	// Проходимся по всему имени
 	for (int i = 0; i < sName.length(); i++) {
@@ -160,13 +162,6 @@ string Tree::FindParent(string &sNode1, string &sNode2) {
 	}
 	return sParent;
 }
-// Удаляет узел и всех его потомков
-void Tree::Delete(Node * pnode) {
-	for (int i = 0; i < pnode->n; i++) {
-		Delete(pnode->lpChildren[i]);
-	}
-	delete[] pnode;
-}
 // Достает данные из тега <value>...</value>
 string GetNumber(string sname, TiXmlDocument reader) {
 	// Перебираем имена <name>...</name> и находим совпадение
@@ -180,8 +175,8 @@ string GetNumber(string sname, TiXmlDocument reader) {
 	return "0";
 }
 
-int main(){
-	setlocale(LC_ALL,"");
+int main() {
+	setlocale(LC_ALL, "");
 	srand(time(0));
 	// Глубина дерева
 	int idepth;
@@ -195,6 +190,7 @@ int main(){
 	TiXmlDocument reader(spath.c_str());
 	if (!reader.LoadFile()) {
 		cout << "File loading failed!";
+		system("pause");
 		return 0;
 	}
 	string sDepth = GetNumber("depth", reader);
@@ -209,14 +205,20 @@ int main(){
 	t.Start();
 	// Ввод имен
 	string sName1, sName2;
-	cout << "Enter node names: ";
-	cin >> sName1 >> sName2;
+	cout << "Enter 1st node name: ";
+	cin >> sName1;
+	cout << "Enter 2nd node name: ";
+	cin >> sName2;
 	// Поиск родителя 
 	string sAnswer = t.FindParent(sName1, sName2);
 	if (sAnswer == "Error") {
 		cout << "This node doesn't exist\n";
+		system("pause");
 		return 0;
 	}
-	cout << "Ancient name: " << sAnswer << "\n";
+	else {
+		cout << "Ancient name: " << sAnswer << "\n";
+		system("pause");
+	}
 	return 0;
 }
