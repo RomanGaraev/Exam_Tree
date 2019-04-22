@@ -15,6 +15,7 @@
 <h5>Level 3,node (terminal)  606</h5>
 <h5>..."</h5>
 <h5>Вводим имена:</h5>
-<h5>"Enter node names: 605 606"</h5>
+<h5>"Enter 1st node name: 605"</h5>
+<h5>"Enter 2nd node name: 606"</h5>
 <h5>Вывод:</h5>
 <h5>"Ancient name: 60"</h5>
